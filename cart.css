@@ -58,7 +58,7 @@ a {
 }
 
 .container {
-    max-width: 75em;
+    max-width: 100em;
     width: 95%;
     margin: 40px auto;
     overflow: hidden;
@@ -67,7 +67,6 @@ a {
     border-radius: 0.6em;
     background: #ecf0f1;
 }
-
 
 .heading {
     padding: 1em;
@@ -225,7 +224,7 @@ a.qty:hover {
 .free-ship {
     padding: 10px 30px;
     border-radius: 0.3em;
-    margin-left: 50px;
+    margin-left: 165px;
     font-size: 1.4em;
     font-weight: bold;
     background: #43ace3;
@@ -235,6 +234,11 @@ a.qty:hover {
 
 .transition {
     transition: all 0.3s ease-in-out;
+}
+
+.fa.fa-trash {
+    color: gold;
+    text-transform: capitalize;
 }
 
 @media screen and ( max-width: 755px) {
