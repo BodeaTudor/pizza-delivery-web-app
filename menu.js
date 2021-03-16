@@ -37,5 +37,33 @@ window.Delivery = {
                                     </div>`
     },
 
+    addPizzaToCart(pizzaId) {
+        var customerId = 1;
+
+        var requestBody = {
+            customerId: customerId,
+            pizzaId: pizzaId
+        };
+
+        $.ajax({
+            url: Delivery.API_BASE_URL + "/carts",
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            window.location.replace("cart.html")
+        })
+    },
+
+    bindEvents: function () {
+        $('.tab-content .row').delegate('.btn', 'click', function (event) {
+            event.preventDefault();
+            var pizzaId = $(this).data('pizza_id');
+
+            Delivery.addPizzaToCart(pizzaId);
+
+        });
+    }
 };
 Delivery.getPizzas();
+Delivery.bindEvents();
