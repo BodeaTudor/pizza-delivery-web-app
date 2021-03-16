@@ -66,3 +66,59 @@ $('input').on('blur', function () {
         input.val(100);
     }
 });
+
+window.Cart = {
+
+    API_BASE_URL: "http://localhost:8086",
+
+    getPizzas: function () {
+        $.ajax({
+            url: Cart.API_BASE_URL + "/carts/" + 1,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response);
+
+            Cart.displayPizzas(response.pizzas);
+        })
+    },
+
+    displayPizzas: function (pizzas) {
+
+        var dynamicHtml = "";
+
+        pizzas.forEach(pizza => dynamicHtml += Cart.getPizzaHtml(pizza));
+
+        $(".cart .td").html(dynamicHtml);
+
+    },
+
+    getPizzaHtml: function (pizza) {
+
+        return `    
+                <div class="layout-inline row">
+                
+                <div class="col col-pro layout-inline">
+                    <h2>${pizza.name}</h2>
+                    <p>${pizza.ingredients}</p>
+                    <h1><a href="#" class="delete-item fa fa-trash"></a></h1>
+                </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>$${pizza.price}</p>
+                </div>
+
+                <div class="col col-qty layout-inline" >
+                    <a href="#" class="qty qty-minus">-</a>
+                    <input type="number" value="${pizza.quantity}"/>
+                    <a href="#" class="qty qty-plus">+</a>
+                </div>
+
+
+                <div class="col col-total col-numeric"><p>$${pizza.price}</p>
+                </div>
+                </div>`
+
+    },
+
+};
+Cart.getPizzas();
