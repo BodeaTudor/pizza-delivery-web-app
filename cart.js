@@ -100,7 +100,7 @@ window.Cart = {
                 <div class="col col-pro layout-inline">
                     <h2>${pizza.name}</h2>
                     <p>${pizza.ingredients}</p>
-                    <h1><a href="#" class="delete-item fa fa-trash"></a></h1>
+                    <h1><a href="#" class="delete-item fa fa-trash" data-pizza_id="${pizza.id}" onclick="Cart.removePizzaFromCart(${pizza.id})"></a></h1>
                 </div>
 
                 <div class="col col-price col-numeric align-center ">
@@ -120,5 +120,36 @@ window.Cart = {
 
     },
 
+    removePizzaFromCart: function (pizzaId) {
+        var customerId = 1;
+
+        var requestBody = {
+            customerId: customerId,
+            pizzaId:pizzaId,
+        }
+
+        $.ajax({
+            url: Cart.API_BASE_URL + "/carts",
+            method: "DELETE",
+            contentType: "application/json",
+            data:JSON.stringify(requestBody)
+        }).done(function (response) {
+            console.log(response);
+            $(`.${pizzaId}`).html('');
+            location.reload();
+        })
+    },
+
+    bindEvents: function () {
+        $('#table').delegate('.delete-item', 'click', function (event) {
+            event.preventDefault();
+
+            var pizzaId = $(this).data('pizza_id');
+
+            Cart.removePizzaFromCart(pizzaId);
+        });
+
+    }
 };
+Cart.bindEvents();
 Cart.getPizzas();
