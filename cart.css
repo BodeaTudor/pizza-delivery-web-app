@@ -29,7 +29,7 @@ h1 {
     font-size: 2.5em;
 }
 
-h2{
+h2 {
     color: #8a8a8a;
 }
 
@@ -116,6 +116,12 @@ a {
     text-transform: uppercase;
     text-align: right;
     font-size: 1.2em;
+}
+
+.table-data-js {
+    border: 1px solid gray;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 .tf p {
@@ -239,6 +245,27 @@ a.qty:hover {
 .fa.fa-trash {
     color: gold;
     text-transform: capitalize;
+}
+
+#actions-table {
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px;
+    border-collapse: collapse;
+}
+
+#actions-table td{
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 15px;
+    border-collapse: collapse;
+    font-size: 30px;
+    border: 1px solid grey;
+
 }
 
 @media screen and ( max-width: 755px) {

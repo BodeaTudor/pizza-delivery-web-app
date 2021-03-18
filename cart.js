@@ -88,19 +88,18 @@ window.Cart = {
 
         pizzas.forEach(pizza => dynamicHtml += Cart.getPizzaHtml(pizza));
 
-        $(".cart .td").html(dynamicHtml);
+        $(".cart .table-data-js").html(dynamicHtml);
 
     },
 
     getPizzaHtml: function (pizza) {
 
         return `    
-                <div class="layout-inline row">
+                <div class="layout-inline row table-data">
                 
                 <div class="col col-pro layout-inline">
                     <h2>${pizza.name}</h2>
                     <p>${pizza.ingredients}</p>
-                    <h1><a href="#" class="delete-item fa fa-trash" data-pizza_id="${pizza.id}" onclick="Cart.removePizzaFromCart(${pizza.id})"></a></h1>
                 </div>
 
                 <div class="col col-price col-numeric align-center ">
@@ -116,7 +115,15 @@ window.Cart = {
 
                 <div class="col col-total col-numeric"><p>$${pizza.price}</p>
                 </div>
-                </div>`
+                </div>
+
+                <table id="actions-table">
+                    <tbody>
+                    <tr>
+                        <td><a href="#" class="delete-item fa fa-trash" data-pizza_id="${pizza.id}" onclick="Cart.removePizzaFromCart(${pizza.id})"></a></td>
+                    </tr>
+                    </tbody>
+                </table>`
 
     },
 
